@@ -1,4 +1,4 @@
 library(shiny)
-source("https://github.com/nvkulkarni21/niraj-shiny-app/blob/master/dependencies.R")
+source("https://raw.githubusercontent.com/nvkulkarni21/niraj-shiny-app/master/dependencies.R")
 
 runGitHub("niraj-shiny-app","nvkulkarni21")
