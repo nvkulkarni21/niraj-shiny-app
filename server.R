@@ -87,7 +87,7 @@ shinyServer(function(input, output,session) {
     #head(x[x[8] == 'VERB',-4],10)
   
     if (length(val) == 1){
-      head(x[x[8] == val ,-4],100)
+      head(x[x[8] == "ADJ" ,-4],100)
     }else if  (length(val) == 2){
       head(x[x[8] == val[1] & x[8] == val[2] ,-4],100)
     }else if  (length(val) == 3)
@@ -116,6 +116,7 @@ shinyServer(function(input, output,session) {
     #str(val[2])
     
     #load english model for annotation from working dir, should be already downloaed if not done
+    #
     #setwd("/Users/nirajkulkarni/Desktop/Niraj/ISB-CBA/Term-1/Text-Analytics/Session 4 Materials/")
     english_model = udpipe_load_model("./english-ewt-ud-2.4-190531.udpipe")  # file_model only needed
     
@@ -124,7 +125,7 @@ shinyServer(function(input, output,session) {
     
     #co-ocurrence for noun and verb
     data_cooc_verb <- cooccurrence(   	
-      x = subset(x, upos %in% c("VERB")), 
+      x = subset(x, upos %in% c("NOUN")), 
       term = "lemma", 
       group = c("doc_id", "paragraph_id", "sentence_id"))  
     # str(data_cooc_verb)
@@ -201,12 +202,13 @@ shinyServer(function(input, output,session) {
     str(data)
     str(checkboxval())
     val <- checkboxval()
-    val <- strsplit(val, split='[,]')
+    #val <- strsplit(val, split='[,]')
     str(val)
     #str(val[1])
     #str(val[2])
     
     #load english model for annotation from working dir, should be already downloaed if not done
+    
     #setwd("/Users/nirajkulkarni/Desktop/Niraj/ISB-CBA/Term-1/Text-Analytics/Session 4 Materials/")
     english_model = udpipe_load_model("./english-ewt-ud-2.4-190531.udpipe")  # file_model only needed
     
@@ -221,7 +223,7 @@ shinyServer(function(input, output,session) {
     str(upos_list)
     #co-ocurrence for noun and verb
     data_cooc_random <- cooccurrence(   	
-      x = subset(x, upos %in% c(val)), 
+      x = subset(x, upos %in% "ADJ"), 
       term = "lemma", 
       group = c("doc_id", "paragraph_id", "sentence_id"))  
      str(data_cooc_random)
