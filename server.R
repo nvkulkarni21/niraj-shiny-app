@@ -194,8 +194,24 @@ shinyServer(function(input, output,session) {
     
   })
   
-  ## Co-occurence logic write here
+  ## Tab 4 Co-occurence logic write here
   output$data_text <- renderTable({
+    
+    data  =  str_replace_all(data_text(), "<.*?>", "") #get rid of html junk 
+    str(data)
+    str(checkboxval())
+    val <- checkboxval()
+    val <- strsplit(val, split='[,]')
+    str(val)
+    #str(val[1])
+    #str(val[2])
+    
+    #load english model for annotation from working dir, should be already downloaed if not done
+    #setwd("/Users/nirajkulkarni/Desktop/Niraj/ISB-CBA/Term-1/Text-Analytics/Session 4 Materials/")
+    english_model = udpipe_load_model("./english-ewt-ud-2.4-190531.udpipe")  # file_model only needed
+    
+    x <- udpipe_annotate(english_model, x = data) 
+    x <- as.data.frame(x)
     
     #mylist<- setNames(as.list(seq(1,length(varnames))),varnames)
     str(checkboxval())
