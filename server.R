@@ -1,4 +1,16 @@
+#Group Members :
+# Niraj Kulkarni
+# PGID - 11915030
+# Email- Niraj_Kulkarni_cba2020s@isb.edu
 #
+# Rohith Varier
+# 11915064
+# Rohith_Varier_cba2020s@isb.edu
+# 
+# Parul Gaba
+# 11915008
+# Parul_Gaba_cba2020s@isb.edu
+
 # This is the server logic of a Shiny web application. You can run the
 # application by clicking 'Run App' above.
 #
@@ -29,12 +41,12 @@ shinyServer(function(input, output,session) {
     return(icons)
   })
    
-  output$res1 <- renderText({
-    
-    res1 = paste(input$checkGroup , collapse = ", ")
-    paste("You chose", res1)
-    
-  })
+  # output$res1 <- renderText({
+  #   
+  #   res1 = paste(input$checkGroup , collapse = ", ")
+  #   paste("You chose", res1)
+  #   
+  # })
   
    
   # load the file into tibble first
@@ -94,6 +106,22 @@ shinyServer(function(input, output,session) {
     
     #### WORD CLOUD NO.1 
   
+    data  =  str_replace_all(data_text(), "<.*?>", "") #get rid of html junk 
+    str(data)
+    str(checkboxval())
+    val <- checkboxval()
+    val <- strsplit(val, split='[,]')
+    str(val)
+    #str(val[1])
+    #str(val[2])
+    
+    #load english model for annotation from working dir, should be already downloaed if not done
+    setwd("/Users/nirajkulkarni/Desktop/Niraj/ISB-CBA/Term-1/Text-Analytics/Session 4 Materials/")
+    english_model = udpipe_load_model("./english-ewt-ud-2.4-190531.udpipe")  # file_model only needed
+    
+    x <- udpipe_annotate(english_model, x = data) 
+    x <- as.data.frame(x)
+    
     #co-ocurrence for noun and verb
     data_cooc_verb <- cooccurrence(   	
       x = subset(x, upos %in% c("VERB")), 
@@ -123,7 +151,23 @@ shinyServer(function(input, output,session) {
   #tab3 : word - cloud2
   output$plot2 <- renderPlot({  
     #### WORD CLOUD NO.2 
-
+    
+    data  =  str_replace_all(data_text(), "<.*?>", "") #get rid of html junk 
+    str(data)
+    str(checkboxval())
+    val <- checkboxval()
+    val <- strsplit(val, split='[,]')
+    str(val)
+    #str(val[1])
+    #str(val[2])
+    
+    #load english model for annotation from working dir, should be already downloaed if not done
+    setwd("/Users/nirajkulkarni/Desktop/Niraj/ISB-CBA/Term-1/Text-Analytics/Session 4 Materials/")
+    english_model = udpipe_load_model("./english-ewt-ud-2.4-190531.udpipe")  # file_model only needed
+    
+    x <- udpipe_annotate(english_model, x = data) 
+    x <- as.data.frame(x)
+    
     #co-ocurrence for noun and verb
     data_cooc_noun <- cooccurrence(   	
       x = subset(x, upos %in% c("NOUN")), 
