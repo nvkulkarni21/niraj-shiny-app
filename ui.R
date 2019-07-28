@@ -30,10 +30,10 @@ shinyUI(fluidPage(
   sidebarPanel(
     
     fileInput("file", "Upload text file"),
-    checkboxGroupInput("checkGroup", label = h3("Select type of UPOs"), 
+    checkboxGroupInput("checkGroup", label = h3("Select type of upos"), 
                        choiceNames =list("ADJ", "NOUN", "PROPN", "ADV" , "VERB"),
                        choiceValues = list("ADJ", "NOUN", "PROPN", "ADV" , "VERB"),
-                       selected = c("ADJ")),textOutput("txt"),verbatimTextOutput(outputId = "res1")
+                       selected = c("ADJ","NOUN", "PROPN")),textOutput("txt"),verbatimTextOutput(outputId = "res1")
     
   ),
   
@@ -54,16 +54,19 @@ shinyUI(fluidPage(
                 
                 tabPanel("Annoted Doc", 
                          h4(p("Top 100 list of sentences for the UPOS selected on the side panel.")),
+                         (p("Please wait it takes time to load ..")),
                          tableOutput("annote_doc")),
                 
                 tabPanel("Word Cloud",
                          h4(p("Word Cloud for the NOUN & VERB selected")),
+                         (p("Please wait it takes time to load ..")),
                          plotOutput("plot1"),
                          plotOutput("plot2")),
                 
                 
                 tabPanel("Co-Occurence",
                          h4(p("Top 30 Co-Occurences for the UPOS selected")),
+                         (p("Please wait it takes time to load ..")),
                          tableOutput("data_text"))
                 
 
