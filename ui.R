@@ -1,4 +1,16 @@
 #
+# Niraj Kulkarni
+# PGID - 11915030
+# Email- Niraj_Kulkarni_cba2020s@isb.edu
+# 
+# Rohith Varier
+# 11915064
+# Rohith_Varier_cba2020s@isb.edu
+# 
+# Parul Gaba
+# 11915008
+# Parul_Gaba_cba2020s@isb.edu
+
 # This is the user-interface definition of a Shiny web application. You can
 # run the application by clicking 'Run App' above.
 #
@@ -45,7 +57,7 @@ shinyUI(fluidPage(
                          tableOutput("annote_doc")),
                 
                 tabPanel("Word Cloud",
-                         h4(p("World Cloud for the UPOS selected")),
+                         h4(p("Word Cloud for the NOUN & VERB selected")),
                          plotOutput("plot1"),
                          plotOutput("plot2")),
                 
