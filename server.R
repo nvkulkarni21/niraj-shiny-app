@@ -56,9 +56,10 @@ shinyServer(function(input, output,session) {
     xx <- iconv(x, "latin1", "UTF-8",sub='')
     
     data_text = tibble(text = (xx)) %>%
-      unnest_tokens(sentence, text, token = "sentences", to_lower=FALSE) %>%    # sentence-tokenizing the article   
-      mutate(sentence_id = row_number()) %>%    # insert setence_id
-      select(sentence_id, sentence)  # drop frivolous stuff
+      unnest_tokens(sentence, text, token = "sentences", to_lower=FALSE) 
+      #%>%    # sentence-tokenizing the article   
+      #mutate(sentence_id = row_number()) %>%    # insert setence_id
+      #select(sentence_id, sentence)  # drop frivolous stuff
     
     return(data_text)
   })
