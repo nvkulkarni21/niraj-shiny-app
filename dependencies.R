@@ -9,6 +9,7 @@ suppressPackageStartupMessages({
   if (!require(tidytext)){install.packages("tidytext")}
   if (!require(dplyr)){install.packages("dplyr")}
   if (!require(shiny)){install.packages("shiny")}
+  if (!require(tidyverse)){install.packages("tidyverse")}
   
   library(udpipe)
   library(textrank)
@@ -22,5 +23,6 @@ suppressPackageStartupMessages({
   library(shiny)
   library(dplyr)
   library(tidytext)
+  library(tidyverse)
   
 })
