@@ -77,7 +77,7 @@ shinyServer(function(input, output,session) {
     #str(val[2])
     
     #load english model for annotation from working dir, should be already downloaed if not done
-    setwd("/Users/nirajkulkarni/Desktop/Niraj/ISB-CBA/Term-1/Text-Analytics/Session 4 Materials/")
+    #setwd("/Users/nirajkulkarni/Desktop/Niraj/ISB-CBA/Term-1/Text-Analytics/Session 4 Materials/")
     english_model = udpipe_load_model("./english-ewt-ud-2.4-190531.udpipe")  # file_model only needed
     
     x <- udpipe_annotate(english_model, x = data) 
